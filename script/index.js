@@ -76,12 +76,12 @@ for (const element of callBtn) {
     for (const data of callingData) {
       const div = document.createElement("div");
       div.innerHTML = `
-                  <div class="p-4 flex justify-between items-center bg-[#FAFAFA] rounded-lg gap-3">
+                  <div class="p-4 flex justify-between items-center bg-[#FAFAFA] rounded-lg gap-3 mb-2">
                 <div>
-                    <h1 class="text-[18px] text-[#111] font-semibold">${data.serviceTitle}</h1>
-                    <p class="text-[18px] text-[#5C5C5C] font-semibold">${data.serviceNumber}</p>
+                    <h1 class="sm:text-[18px] text-[#111] font-semibold">${data.serviceTitle}</h1>
+                    <p class="sm:text-[18px] text-[#5C5C5C] font-semibold">${data.serviceNumber}</p>
                 </div>
-                <p class="text-[18px] text-[#111] font-semibold">${data.date}</p>
+                <p class="sm:text-[18px] text-[#111] font-semibold text-nowrap">${data.date}</p>
             </div>
       `;
       transactionContainer.appendChild(div);
@@ -94,3 +94,16 @@ document.getElementById("clear-btn").addEventListener("click", function () {
   callingData = [];
   transactionContainer.innerText = "";
 });
+
+// copy functionalities
+const copyBtn = document.getElementsByClassName("copy-btn");
+for (const btn of copyBtn) {
+  btn.addEventListener("click", function () {
+    alert("Copy Successful");
+    const hotlineNumber =
+      btn.parentNode.parentNode.querySelector("#serviceNumber").innerText;
+    navigator.clipboard.writeText(hotlineNumber);
+    document.getElementById("copy-Count").innerText =
+      parseInt(document.getElementById("copy-Count").innerText) + 1;
+  });
+}
